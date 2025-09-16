@@ -41,6 +41,10 @@ const Admin = () => {
         <Link to="/manual-checkin" className="feature-card">
           <div className="card-header">Manual Card Check-in</div>
         </Link>
+
+        <Link to="/event-card" className="feature-card">
+          <div className="card-header">Generate event Card</div>
+        </Link>
       </div>
 
       <footer className="footer" id="contact">

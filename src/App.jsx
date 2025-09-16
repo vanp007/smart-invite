@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Admin from "./components/Admin";
 import CreateEvent from "./components/CreateEvent";
 import ViewEvents from "./components/ViewEvents";
-import ViewGuest from "./components/ViewGuests";
 import CardCheckin from "./components/CardCheckin";
 import UploadGuests from "./components/UploadGuests";
+import EventCard from "./components/EventCard";
 
 const App = () => {
   return (
@@ -17,8 +17,8 @@ const App = () => {
         <Route path="/manual-checkin" element={<CardCheckin />} />
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/view-events" element={<ViewEvents />} />
-        <Route path="/view-guests" element={<ViewGuest />} />
         <Route path="/upload-guests" element={<UploadGuests />} />
+        <Route path="/event-card" element={<EventCard />} />
       </Routes>
     </Router>
   );
