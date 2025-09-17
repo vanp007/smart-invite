@@ -8,29 +8,38 @@ const UploadGuests = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const eventID = location.state?.eventID || "No Event ID";
+  const brideName = location.state?.brideName || "Bride";
+  const groomName = location.state?.groomName || "Groom";
+  const hostName = location.state?.hostName || "Host Name";
+  const eventDate = location.state?.eventDate || Date();
+  const E_location = location.state?.location || "Venue";
+  const address = location.state?.address || "Address";
+  const contact = location.state?.phoneNumbers || "Contact info";
 
   const onSubmit = async (e) => {
         e.preventDefault();
         setResult("Uploading Guests...");
         try {
             const formData = new FormData(e.target);
-            formData.set("event_id", eventID); // Ensure eventID is included and correct
+            formData.set("event_id", eventID); 
 
             const response = await axios.post(
-                "http://localhost/smart-invite-api/upload-guests.php",
+                "http://localhost/php-crud-rest-api-main/upload-guests.php",
                 formData,
             );
 
-            if (response.status === 200) {
-                navigate("/view-guests", { state: { eventID } });
-            } else {
-                setResult("Error uploading guests.");
-            }
+      if (response.status === 200) {
+        navigate("/event-card", 
+          { state: { eventID, brideName, groomName, 
+            hostName, eventDate, E_location, address, contact } });
+      } else {
+        setResult("Error uploading guests.");
+      }
         } catch (error) {
             console.error(error);
             setResult("An error occurred while uploading guests.");
         }
-        // e.target.reset(); // Optional: uncomment if you want to clear the form after upload
+         e.target.reset(); 
     };
 
   return (

@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 
 const Admin = () => {
-
-
-
-
   return (
     <div className="admin-container">
       <header className="header">
@@ -31,11 +27,6 @@ const Admin = () => {
 
         <Link to="/view-events" className="feature-card">
           <div className="card-header">View Events</div>
-        </Link>
-
-
-        <Link to="/view-guest" className="feature-card">
-          <div className="card-header">View Guest</div>
         </Link>
 
         <Link to="/manual-checkin" className="feature-card">

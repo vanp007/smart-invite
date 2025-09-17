@@ -14,7 +14,7 @@ const ViewEvents = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost/smart-invite-api/view-events.php")
+        axios.get("https://invite.komki.co.tz/smart-invite-api/view-events.php")
             .then((res) => {
                 // Extract the array from the JSON object
                 const apiData = Array.isArray(res.data.data) ? res.data.data : [];
