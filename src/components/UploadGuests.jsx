@@ -24,7 +24,7 @@ const UploadGuests = () => {
             formData.set("event_id", eventID); 
 
             const response = await axios.post(
-                "http://localhost/php-crud-rest-api-main/upload-guests.php",
+                "https://invite.komki.co.tz/smart-invite-api/upload-guests.php",
                 formData,
             );
 

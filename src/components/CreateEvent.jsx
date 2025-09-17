@@ -17,7 +17,7 @@ const CreateEvent = () => {
             plainObject.eventID = eventID;
             const jsonString = JSON.stringify(plainObject);
 
-            const response = await axios.post("http://localhost/php-crud-rest-api-main/api.php", jsonString);
+            const response = await axios.post("https://invite.komki.co.tz/smart-invite-api/create-event.php", jsonString);
 
             if (response.status === 200) {
                 navigate("/upload-guests",
