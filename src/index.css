@@ -1,3 +1,4 @@
+/* All responsive header/navbar custom styles added today have been removed. */
 :root {
     --voter-color: #3498db;
     --candidate-color: #2ecc71;
@@ -28,7 +29,7 @@ body {
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items:center;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
     position: sticky;
     top: 0;
@@ -154,8 +155,12 @@ form {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 
   display: grid;
-  grid-template-columns: 1fr 1fr; /* two equal columns */
+  grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
   gap: 20px; /* space between fields */
+}
+
+.full-width{
+  grid-column: 1 / span 3; 
 }
 
 /* Form groups */

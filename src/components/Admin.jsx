@@ -3,15 +3,27 @@ import { Link } from "react-router-dom";
 const Admin = () => {
   return (
     <div className="admin-container">
-      <header className="header">
+      <header className="header" style={{flexDirection:"row"}}>
         <div className="logo">
           <span className="logo-icon"></span>
           <h1>Smart Invite</h1>
         </div>
-        <nav className="nav-links">
-          <a href="">About</a>
-          <a href="">Services</a>
-          <a href="">Logout</a>
+        <nav className="navbar navbar-expand-sm">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseableNav"
+          >
+            <span className="navbar-toggler-icon" style={{ filter: 'invert(1)' }}></span>
+          </button>
+          <div className="collapse navbar-collapse nav-links" id="collapseableNav">
+            <div className="navbar-nav">
+              <a href="">About</a>
+              <a href="">Services</a>
+              <a href="">Logout</a>
+            </div>
+          </div>
         </nav>
       </header>
 

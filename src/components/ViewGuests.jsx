@@ -15,7 +15,7 @@ const ViewGuests = () => {
     const eventID = location.state?.eventID || "No Event ID";
 
     useEffect(() => {
-        axios.get("http://localhost/smart-invite-api/view-guests.php",{ params: { eventID: eventID } })
+        axios.get("https://invite.komki.co.tz/smart-invite-api/view-guests.php",{ params: { eventID: eventID } })
             .then((res) => {
                 // Extract the array from the JSON object
                 const apiData = Array.isArray(res.data.data) ? res.data.data : [];
