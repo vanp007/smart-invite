@@ -1,52 +1,55 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../Styles/createevent.css';
 
 const CreateEvent = () => {
-    const [result, setResult] = useState();
-    const navigate = useNavigate();
+	const [result, setResult] = useState();
+	const navigate = useNavigate();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        setResult("Creating event...");
+	const onSubmit = async (e) => {
+		e.preventDefault();
+		setResult("Creating event...");
 
-        const eventID = "AEF" + Date.now();
-        try {
-            const formData = new FormData(e.target);
-            const plainObject = Object.fromEntries(formData.entries());
-            plainObject.eventID = eventID;
-            const jsonString = JSON.stringify(plainObject);
+		const eventID = "AEF" + Date.now();
+		try {
+			const formData = new FormData(e.target);
+			const plainObject = Object.fromEntries(formData.entries());
+			plainObject.eventID = eventID;
+			const jsonString = JSON.stringify(plainObject);
 
-            const response = await axios.post("https://invite.komki.co.tz/smart-invite-api/create-event.php", jsonString);
+			const response = await axios.post("https://invite.komki.co.tz/smart-invite-api/create-event.php", jsonString);
 
-            if (response.status === 200) {
-                navigate("/upload-guests",
-                    {
-                        state: {
-                            eventID, brideName: plainObject.brideName,
-                            groomName: plainObject.groomName, hostName: plainObject.hostName,
-                            eventDate: plainObject.eventDate, venue: plainObject.venue,
-                            address: plainObject.address, phoneNumbers: plainObject.phoneNumbers
-                        }
+			if (response.status === 200) {
+				navigate("/upload-guests",
+					{
+						state: {
+							eventID, brideName: plainObject.brideName,
+							groomName: plainObject.groomName, hostName: plainObject.hostName,
+							eventDate: plainObject.eventDate, venue: plainObject.venue,
+							address: plainObject.address, phoneNumbers: plainObject.phoneNumbers
+						}
+					});
+			} else {
+				setResult("Error creating event.");
+			}
+		} catch (error) {
+			console.error(error);
+			setResult("An error occurred while creating the event.");
+		}
 
-                    });
-            } else {
-                setResult("Error creating event.");
-            }
-        } catch (error) {
-            console.error(error);
-            setResult("An error occurred while creating the event.");
-        }
-
-        e.target.reset();
-    };
+		e.target.reset();
+	};
 
 	return (
 		<div>
 			<div className="header">
 				<h1>Create Event</h1>
 			</div>
-			<div className='d-flex flex-column align-items-center mt-5'>
+
+			
+			<div className="create-event">
+
 				<form onSubmit={onSubmit}>
 					<div>
 						<label htmlFor="hostName">Host Name:</label>
@@ -69,26 +72,24 @@ const CreateEvent = () => {
 						<input type="date" id="eventDate" name="eventDate" required />
 					</div>
 					<div>
-						<label htmlFor="location">Venue:</label>
-						<input type="text" id="location" name="venue" required />
+						<label htmlFor="venue">Venue:</label>
+						<input type="text" id="venue" name="venue" required />
 					</div>
 					<div>
 						<label htmlFor="color1">Color 1:</label>
-						<input type="color" id="color1" name="color1" required />
+						<input type="text" id="color1" name="color1" required />
 					</div>
 					<div>
 						<label htmlFor="color2">Color 2:</label>
-						<input type="color" id="color2" name="color2" required />
+						<input type="text" id="color2" name="color2" required />
 					</div>
 					<div>
 						<label htmlFor="color3">Color 3:</label>
-						<input type="color" id="color3" name="color3" required />
+						<input type="text" id="color3" name="color3" required />
 					</div>
-					{/* Phone number label and input as direct children of form for grid spanning */}
 					<label htmlFor="phoneNumbers" className="full-width">Phone Numbers (comma separated):</label>
-					<input type="text" id="phoneNumbers" className="form-control full-width" name="phoneNumbers" required />
-					<input type='hidden' id='eventID' name='eventID' value={"AEF" + Date.now()} readOnly />
-					<button type="submit" className='btn btn-primary p-3 full-width'>Create Event</button>
+					<input type="text" id="phoneNumbers" className="full-width" name="phoneNumbers" required />
+					<button type="submit" className='btn btn-primary full-width'>Create Event</button>
 				</form>
 				<p>{result}</p>
 			</div>

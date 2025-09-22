@@ -1,0 +1,65 @@
+/* Responsive styles for CreateEvent component */
+.create-event-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.create-event-container .header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.create-event-container form > div {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-event-container label {
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.create-event-container input[type="text"],
+.create-event-container input[type="date"],
+.create-event-container input[type="color"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.create-event-container .full-width {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.create-event-container button {
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .create-event-container {
+    max-width: 100%;
+    padding: 8px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .create-event-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .create-event-container form > div {
+    margin-bottom: 12px;
+  }
+  .create-event-container button {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+}
