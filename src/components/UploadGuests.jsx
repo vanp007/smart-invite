@@ -31,7 +31,7 @@ const UploadGuests = () => {
       if (response.status === 200) {
         navigate("/event-card", 
           { state: { eventID, brideName, groomName, 
-            hostName, eventDate, E_location, address, contact, venue } });
+            hostName, eventDate, venue, address, contact, venue } });
       } else {
         setResult("Error uploading guests.");
       }
