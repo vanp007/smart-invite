@@ -25,7 +25,7 @@ const CreateEvent = () => {
                         state: {
                             eventID, brideName: plainObject.brideName,
                             groomName: plainObject.groomName, hostName: plainObject.hostName,
-                            eventDate: plainObject.eventDate, location: plainObject.location,
+                            eventDate: plainObject.eventDate, venue: plainObject.venue,
                             address: plainObject.address, phoneNumbers: plainObject.phoneNumbers
                         }
 
@@ -70,7 +70,7 @@ const CreateEvent = () => {
 					</div>
 					<div>
 						<label htmlFor="location">Venue:</label>
-						<input type="text" id="location" name="location" required />
+						<input type="text" id="location" name="venue" required />
 					</div>
 					<div>
 						<label htmlFor="color1">Color 1:</label>

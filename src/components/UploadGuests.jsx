@@ -12,7 +12,7 @@ const UploadGuests = () => {
   const groomName = location.state?.groomName || "Groom";
   const hostName = location.state?.hostName || "Host Name";
   const eventDate = location.state?.eventDate || Date();
-  const E_location = location.state?.location || "Venue";
+  const venue = location.state?.venue || "Venue";
   const address = location.state?.address || "Address";
   const contact = location.state?.phoneNumbers || "Contact info";
 
@@ -31,7 +31,7 @@ const UploadGuests = () => {
       if (response.status === 200) {
         navigate("/event-card", 
           { state: { eventID, brideName, groomName, 
-            hostName, eventDate, E_location, address, contact } });
+            hostName, eventDate, E_location, address, contact, venue } });
       } else {
         setResult("Error uploading guests.");
       }

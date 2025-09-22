@@ -1,6 +1,0 @@
-Name,Email,Phone,Status
-John Doe,johndoe@example.com,255712345678,Pending
-Jane Smith,janesmith@example.com,255713456789,Accepted
-Ali Mohammed,alim@example.com,255714567890,Declined
-Maria Joseph,mariaj@example.com,255715678901,Pending
-Peter Wilson,peterw@example.com,255716789012,Accepted
