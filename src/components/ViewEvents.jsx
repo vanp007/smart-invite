@@ -16,7 +16,6 @@ const ViewEvents = () => {
     useEffect(() => {
         axios.get("https://invite.komki.co.tz/smart-invite-api/view-events.php")
             .then((res) => {
-               
                 const apiData = Array.isArray(res.data.data) ? res.data.data : [];
                 setData(apiData);
                 console.log(apiData);
@@ -88,6 +87,9 @@ const ViewEvents = () => {
                                         </button>
                                         <button className="btn btn-outline-success btn-sm mx-1" onClick={() => navigate("/view-guests", { state: { eventID: row.event_id } })}>
                                             <FontAwesomeIcon icon={faEye} /> View Guests
+                                        </button>
+                                        <button className="btn btn-outline-primary btn-sm mx-1" onClick={() => navigate("/preview-card", { state: { eventID: row.event_id } })}>
+                                            <FontAwesomeIcon icon={faEye} /> preview Card
                                         </button>
                                     </td>
                                 </tr>

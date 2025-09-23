@@ -8,39 +8,31 @@ const UploadGuests = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const eventID = location.state?.eventID || "No Event ID";
-  const brideName = location.state?.brideName || "Bride";
-  const groomName = location.state?.groomName || "Groom";
-  const hostName = location.state?.hostName || "Host Name";
-  const eventDate = location.state?.eventDate || Date();
-  const venue = location.state?.venue || "Venue";
-  const address = location.state?.address || "Address";
-  const contact = location.state?.phoneNumbers || "Contact info";
 
   const onSubmit = async (e) => {
-        e.preventDefault();
-        setResult("Uploading Guests...");
-        try {
-            const formData = new FormData(e.target);
-            formData.set("event_id", eventID); 
+    e.preventDefault();
+    setResult("Uploading Guests...");
+    try {
+      const formData = new FormData(e.target);
+      formData.set("event_id", eventID);
 
-            const response = await axios.post(
-                "https://invite.komki.co.tz/smart-invite-api/upload-guests.php",
-                formData,
-            );
+      const response = await axios.post(
+        "https://invite.komki.co.tz/smart-invite-api/upload-guests.php",
+        formData,
+      );
 
       if (response.status === 200) {
-        navigate("/event-card", 
-          { state: { eventID, brideName, groomName, 
-            hostName, eventDate, venue, address, contact, venue } });
+        navigate("/preview-card",
+          { state: { eventID } });
       } else {
         setResult("Error uploading guests.");
       }
-        } catch (error) {
-            console.error(error);
-            setResult("An error occurred while uploading guests.");
-        }
-         e.target.reset(); 
-    };
+    } catch (error) {
+      console.error(error);
+      setResult("An error occurred while uploading guests.");
+    }
+    e.target.reset();
+  };
 
   return (
     <div>
@@ -49,9 +41,9 @@ const UploadGuests = () => {
       </div>
 
       <form onSubmit={onSubmit} encType="multipart/form-data">
-                <div>
-                    <label htmlFor="event_id">Event ID:</label>
-                    <input
+        <div>
+          <label htmlFor="event_id">Event ID:</label>
+          <input
             type="text"
             id="event_id"
             name="event_id"
@@ -59,14 +51,14 @@ const UploadGuests = () => {
             required
             readOnly
           />
-                </div>
-                <div>
-                    <label htmlFor="guestfile">CSV File:</label>
-                    <input type="file" name="guestfile" id="guestfile" required />
-                </div>
-                <button className='btn btn-primary' type="submit">Upload</button>
-            </form>
-            <p>{result}</p>
+        </div>
+        <div>
+          <label htmlFor="guestfile">CSV File:</label>
+          <input type="file" name="guestfile" id="guestfile" required />
+        </div>
+        <button className='btn btn-primary' type="submit">Upload</button>
+      </form>
+      <p>{result}</p>
 
     </div>
   )

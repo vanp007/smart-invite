@@ -23,12 +23,7 @@ const CreateEvent = () => {
 			if (response.status === 200) {
 				navigate("/upload-guests",
 					{
-						state: {
-							eventID, brideName: plainObject.brideName,
-							groomName: plainObject.groomName, hostName: plainObject.hostName,
-							eventDate: plainObject.eventDate, venue: plainObject.venue,
-							address: plainObject.address, phoneNumbers: plainObject.phoneNumbers
-						}
+						state: { eventID }
 					});
 			} else {
 				setResult("Error creating event.");
@@ -47,7 +42,7 @@ const CreateEvent = () => {
 				<h1>Create Event</h1>
 			</div>
 
-			
+
 			<div className="create-event">
 
 				<form onSubmit={onSubmit}>

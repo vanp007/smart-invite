@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Admin = () => {
   return (
     <div className="admin-container">
-      <header className="header" style={{flexDirection:"row"}}>
+      <header className="header" style={{ flexDirection: "row" }}>
         <div className="logo">
           <span className="logo-icon"></span>
           <h1>Smart Invite</h1>
@@ -45,9 +45,6 @@ const Admin = () => {
           <div className="card-header">Manual Card Check-in</div>
         </Link>
 
-        <Link to="/event-card" className="feature-card">
-          <div className="card-header">Generate event Card</div>
-        </Link>
       </div>
 
       <footer className="footer" id="contact">
