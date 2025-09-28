@@ -38,12 +38,14 @@ const CreateEvent = () => {
 
 	return (
 		<div>
-			<div className="header">
-				<h1>Create Event</h1>
-			</div>
+			<nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
+				<div className="container">
+					<a className="navbar-brand fw-bold" >Create Event</a>
+				</div>
+			</nav>
 
 
-			<div className="create-event">
+			<div className="create-event" style={{marginTop:100}}>
 
 				<form onSubmit={onSubmit}>
 					<div>

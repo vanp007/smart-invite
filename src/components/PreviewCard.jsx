@@ -19,16 +19,16 @@ const PreviewCard = () => {
             try {
                 // Fetch event
                 const eventRes = await axios.get(`https://invite.komki.co.tz/smart-invite-api/view-events.php?eventID=${eventID}`);
-                const eventData = Array.isArray(eventRes.data.data) && eventRes.data.data.length > 0 
-                    ? eventRes.data.data[0] 
+                const eventData = Array.isArray(eventRes.data.data) && eventRes.data.data.length > 0
+                    ? eventRes.data.data[0]
                     : null;
                 setEvent(eventData);
 
                 // Fetch guest if guestID exists
                 if (guestID) {
                     const guestRes = await axios.get(`https://invite.komki.co.tz/smart-invite-api/view-guests.php?eventID=${eventID}`);
-                    const guestData = Array.isArray(guestRes.data.data) && guestRes.data.data.length > 0 
-                        ? guestRes.data.data[0] 
+                    const guestData = Array.isArray(guestRes.data.data) && guestRes.data.data.length > 0
+                        ? guestRes.data.data[0]
                         : null;
                     setGuest(guestData);
                 }
@@ -57,9 +57,11 @@ const PreviewCard = () => {
 
     return (
         <div>
-            <header className="header">
-                <h1>Preview Card</h1>
-            </header>
+            <nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
+                <div className="container">
+                    <a className="navbar-brand fw-bold" >Preview card</a>
+                </div>
+            </nav>
 
             <div className="eventcard-wrapper">
                 <div

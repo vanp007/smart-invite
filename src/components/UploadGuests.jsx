@@ -36,11 +36,13 @@ const UploadGuests = () => {
 
   return (
     <div>
-      <div className="header">
-        <h1>Upload Guests</h1>
-      </div>
+			<nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
+				<div className="container">
+					<a className="navbar-brand fw-bold" >Upload Guest</a>
+				</div>
+			</nav>
 
-      <form onSubmit={onSubmit} encType="multipart/form-data">
+      <form onSubmit={onSubmit} encType="multipart/form-data" style={{marginTop:100}}>
         <div>
           <label htmlFor="event_id">Event ID:</label>
           <input
@@ -56,7 +58,7 @@ const UploadGuests = () => {
           <label htmlFor="guestfile">CSV File:</label>
           <input type="file" name="guestfile" id="guestfile" required />
         </div>
-        <button className='btn btn-primary' type="submit">Upload</button>
+        <button className='btn btn-primary' style={{height:50}} type="submit">Upload</button>
       </form>
       <p>{result}</p>
 

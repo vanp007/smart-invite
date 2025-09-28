@@ -85,13 +85,16 @@ const CardCheckin = () => {
   };
 
   return (
-    <div className="container py-4">
-      <div className="row justify-content-center">
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
+        <div className="container">
+          <a className="navbar-brand fw-bold" >Card Checkin</a>
+        </div>
+      </nav>
+
+      <div className="row justify-content-center" style={{marginTop:100}}>
         <div className="col-lg-8 col-md-10 col-sm-12">
           <div className="card shadow-sm rounded-3">
-            <div className="card-header">
-              <h5 className="mb-0">Manual Card Check-in</h5>
-            </div>
             <div className="card-body">
               {/* Manual check-in form */}
               <form className="d-flex mb-3">
@@ -128,9 +131,8 @@ const CardCheckin = () => {
                 <button
                   type="button"
                   onClick={toggleTorch}
-                  className={`btn ${
-                    torchOn ? "btn-primary" : "btn-secondary"
-                  } d-flex align-items-center justify-content-center gap-2`}
+                  className={`btn ${torchOn ? "btn-primary" : "btn-secondary"
+                    } d-flex align-items-center justify-content-center gap-2`}
                 >
                   {torchOn ? <FlashlightOff size={18} /> : <Flashlight size={18} />}
                   {torchOn ? "Torch off" : "Torch on"}

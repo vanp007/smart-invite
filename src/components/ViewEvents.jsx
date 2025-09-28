@@ -46,10 +46,14 @@ const ViewEvents = () => {
 
     return (
         <div>
-            <div className="header">
-                <h1>View Events</h1>
-            </div>
-            <div className="justify-content-center d-flex flex-column align-items-center p-3">
+			<nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
+				<div className="container">
+					<a className="navbar-brand fw-bold" >View Events</a>
+				</div>
+			</nav>
+
+
+            <div className="justify-content-center d-flex flex-column align-items-center" style={{marginTop:100}}>
                 <input className="form-control w-25"
                     type="text"
                     placeholder="Search by name or email"
@@ -104,7 +108,7 @@ const ViewEvents = () => {
                     </tbody>
                 </table>
                 {/* Pagination Controls */}
-                <div>
+                <div style={{display:'flex',gap:20}}>
                     <button className="btn btn-primary" onClick={() => handlePageChange(currentPage - 1)}>
                         <FontAwesomeIcon icon={faAngleLeft} />
                         Previous
