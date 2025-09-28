@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Hero from "../../src/assets/hero1.jpg";
+import { Admin } from "mongodb";
 
-const Trial = () => {
+const Admin = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -29,7 +30,6 @@ const Trial = () => {
 
   return (
     <div>
-      {/* Navbar */}
       <nav
         className={`navbar navbar-expand-lg navbar-dark fixed-top ${
           scrolled ? "scrolled-nav" : "bg-transparent shadow-none"
@@ -57,7 +57,6 @@ const Trial = () => {
         </div>
       </nav>
 
-      {/* Hero */}
       <section className="d-flex align-items-center text-center text-white" 
         style={{ minHeight: "100vh", background: `linear-gradient(rgba(6, 6, 11, 0.5),rgba(50, 31, 174, 0.5)),url('${Hero}')`, backgroundSize: 'cover', backgroundPosition:'center'}}>
         <div className="container">
@@ -67,7 +66,6 @@ const Trial = () => {
         </div>
       </section>
 
-      {/* Features */}
       <section id="features" className="py-5 bg-light">
         <div className="container text-center">
           <h2 className="fw-bold text-primary mb-5">Powerful Features to Customize Your Invitations</h2>
@@ -85,7 +83,6 @@ const Trial = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="text-white text-center py-3" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
         <p className="mb-0">© 2025 WeddingInvite System. All rights reserved.</p>
       </footer>
@@ -93,4 +90,4 @@ const Trial = () => {
   );
 };
 
-export default Trial;
+export default Admin;
