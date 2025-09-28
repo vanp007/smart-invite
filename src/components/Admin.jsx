@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Hero from "../../src/assets/hero1.jpg";
-import { Admin } from "mongodb";
 
 const Admin = () => {
   const [scrolled, setScrolled] = useState(false);
