@@ -9,6 +9,8 @@ import ViewGuests from "./components/ViewGuests"
 import CardCheckin from "./components/CardCheckin";
 import UploadGuests from "./components/UploadGuests";
 import PreviewCard from "./components/previewCard";
+import Home from "./components/home";
+import UploadCard from "./components/UploadCard";
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/upload-guests" element={<UploadGuests />} />
         <Route path="/preview-card/:eventID" element={<PreviewCard />} />
         <Route path="/preview-card" element={<PreviewCard />} />
+        <Route path="/upload-card" element={<UploadCard />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );

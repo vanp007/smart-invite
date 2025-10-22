@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 
-const UploadGuests = () => {
+const UploadCard = () => {
   const [result, setResult] = useState();
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const UploadGuests = () => {
       );
 
       if (response.status === 200) {
-        navigate("/upload-card",
+        navigate("/preview-card",
           { state: { eventID } });
       } else {
         setResult("Error uploading guests.");
@@ -38,7 +38,7 @@ const UploadGuests = () => {
     <div>
 			<nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
 				<div className="container">
-					<a className="navbar-brand fw-bold" >Upload Guest</a>
+					<a className="navbar-brand fw-bold" >Upload Card</a>
 				</div>
 			</nav>
 
@@ -55,8 +55,8 @@ const UploadGuests = () => {
           />
         </div>
         <div>
-          <label htmlFor="guestfile">CSV File:</label>
-          <input type="file" name="guestfile" id="guestfile" required />
+          <label htmlFor="cardfile">Upload Card:</label>
+          <input type="file" name="cardfile" id="cardfile" required />
         </div>
         <button className='btn btn-primary' style={{height:50}} type="submit">Upload</button>
       </form>
@@ -66,4 +66,4 @@ const UploadGuests = () => {
   )
 }
 
-export default UploadGuests
+export default UploadCard;

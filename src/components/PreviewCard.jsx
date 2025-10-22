@@ -13,6 +13,7 @@ const PreviewCard = () => {
     const [event, setEvent] = useState(null);
     const [guest, setGuest] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [text, setText] = useState('welcome to the event');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -55,6 +56,9 @@ const PreviewCard = () => {
     const address = event.address || '';
     const contact = event.phones || '';
 
+    
+
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
@@ -63,7 +67,7 @@ const PreviewCard = () => {
                 </div>
             </nav>
 
-            <div className="eventcard-wrapper">
+            <div className="eventcard-wrapper" style={{ marginTop: 100 }}>
                 <div
                     className="cardii"
                     style={{
@@ -100,9 +104,19 @@ const PreviewCard = () => {
                         <strong>Contact:</strong> {contact}
                     </div>
 
-                    <div className="flex items-center justify-center min-h-screen mt-4">
-                        <QRCode value={`Dear ${guestName || 'Guest'}, welcome to this wonderful event...`} size={64} bgColor="#FFFFFF" fgColor="#000000" />
-                    </div>
+
+                        <div>
+                            <input
+                                type="text"
+                                value={text}
+                                onChange={(e) => setText(e.target.value)}
+                                placeholder="Enter text or URL"
+                              
+                                hidden
+                            />
+                            <QRCode className='bg-light p-1' value={text} size={80} />
+                        </div>
+                        
                 </div>
 
                 <button className='btn btn-primary eventcard-btn'>Next</button>
