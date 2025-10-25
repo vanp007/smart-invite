@@ -22,7 +22,7 @@ const UploadGuests = () => {
       );
 
       if (response.status === 200) {
-        navigate("/upload-card",
+        navigate("/preview-card",
           { state: { eventID } });
       } else {
         setResult("Error uploading guests.");

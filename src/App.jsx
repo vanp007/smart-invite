@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Admin from "./components/Admin";
 import CreateEvent from "./components/CreateEvent";
 import ViewEvents from "./components/ViewEvents";
 import ViewGuests from "./components/ViewGuests"
@@ -16,7 +15,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Admin />} />
+        <Route path="/" element={<Home />} />
         <Route path="/manual-checkin" element={<CardCheckin />} />
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/view-events" element={<ViewEvents />} />
@@ -25,7 +24,6 @@ const App = () => {
         <Route path="/preview-card/:eventID" element={<PreviewCard />} />
         <Route path="/preview-card" element={<PreviewCard />} />
         <Route path="/upload-card" element={<UploadCard />} />
-        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );
