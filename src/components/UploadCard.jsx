@@ -17,26 +17,26 @@ const UploadCard = () => {
       formData.set("event_id", eventID);
 
       const response = await axios.post(
-        "https://invite.komki.co.tz/smart-invite-api/upload-guests.php",
+        "https://invite.komki.co.tz/smart-invite-api/upload-card.php",
         formData,
       );
 
       if (response.status === 200) {
-        navigate("/preview-card",
-          { state: { eventID } });
+        navigate(`/preview-card/${eventID}`);
       } else {
-        setResult("Error uploading guests.");
+        setResult("Error uploading card.");
       }
     } catch (error) {
       console.error(error);
-      setResult("An error occurred while uploading guests.");
+      setResult("An error occurred while uploading card.");
     }
     e.target.reset();
   };
 
   return (
     <div>
-			<nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
+			<nav className="navbar navbar-expand-lg navbar-dark fixed-top" 
+      style={{ background: 'var(--primary-gradient)' }}>
 				<div className="container">
 					<a className="navbar-brand fw-bold" >Upload Card</a>
 				</div>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CreateEvent from "./components/CreateEvent";
+import Index from "./components/index";
 import ViewEvents from "./components/ViewEvents";
 import ViewGuests from "./components/ViewGuests"
 import CardCheckin from "./components/CardCheckin";
@@ -16,13 +17,13 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/index" element={<Index />} />
         <Route path="/manual-checkin" element={<CardCheckin />} />
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/view-events" element={<ViewEvents />} />
         <Route path="/view-guests" element={<ViewGuests />} />
         <Route path="/upload-guests" element={<UploadGuests />} />
         <Route path="/preview-card/:eventID" element={<PreviewCard />} />
-        <Route path="/preview-card" element={<PreviewCard />} />
         <Route path="/upload-card" element={<UploadCard />} />
       </Routes>
     </Router>

@@ -1,128 +1,150 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import '../Styles/eventcard.css';
-import QRCode from "react-qr-code";
-import Card from "../assets/wedding1.jpg";
+import QRCode from 'react-qr-code';
+import Card from '../assets/wedding1.jpg';
 
 const PreviewCard = () => {
-    const { eventID } = useParams();
-    const [searchParams] = useSearchParams();
-    const guestID = searchParams.get("guestID");
+  const location = useLocation();
+  const { eventID: paramEventID } = useParams();
+  const eventID = location.state?.eventID || paramEventID;
 
-    const [event, setEvent] = useState(null);
-    const [guest, setGuest] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [text, setText] = useState('welcome to the event');
+  const [event, setEvent] = useState(null);
+  const [cardData, setCardData] = useState(null);
+  const [guest, setGuest] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [text, setText] = useState('welcome to the event');
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // Fetch event
-                const eventRes = await axios.get(`https://invite.komki.co.tz/smart-invite-api/view-events.php?eventID=${eventID}`);
-                const eventData = Array.isArray(eventRes.data.data) && eventRes.data.data.length > 0
-                    ? eventRes.data.data[0]
-                    : null;
-                setEvent(eventData);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!eventID) return;
 
-                // Fetch guest if guestID exists
-                if (guestID) {
-                    const guestRes = await axios.get(`https://invite.komki.co.tz/smart-invite-api/view-guests.php?eventID=${eventID}`);
-                    const guestData = Array.isArray(guestRes.data.data) && guestRes.data.data.length > 0
-                        ? guestRes.data.data[0]
-                        : null;
-                    setGuest(guestData);
-                }
+      setLoading(true);
+      try {
+        // Fetch event details
+        const eventRes = await axios.get(
+          `https://invite.komki.co.tz/smart-invite-api/view-events-by-id.php`,
+          { params: { eventID, _t: Date.now() } }
+        );
+        const eventData = eventRes.data?.data?.[0] || null;
+        setEvent(eventData);
 
-                setLoading(false);
-            } catch (err) {
-                console.error("Error fetching data:", err);
-                setLoading(false);
-            }
-        };
+        // Fetch guest details for this event (optional)
+        const guestRes = await axios.get(
+          `https://invite.komki.co.tz/smart-invite-api/view-guests.php`,
+          { params: { eventID, _t: Date.now() } }
+        );
+        const guestData = guestRes.data?.data?.[0] || null;
+        setGuest(guestData);
 
-        fetchData();
-    }, [eventID, guestID]);
+        console.log("view-guest response:", guestRes.data);
 
-    if (loading) return <p>Loading...</p>;
-    if (!event) return <p>Event not found.</p>;
+        const cardPicRes = await axios.get(
+          "https://invite.komki.co.tz/smart-invite-api/view-card.php",
+          { params: { eventID, _t: Date.now() } } 
+        );
 
-    const hostName = event.host_name || '';
-    const guestName = guest?.guest_name || 'Guest Name';
-    const groomName = event.groom || '';
-    const brideName = event.bride || '';
-    const eventDate = event.event_date || '';
-    const venue = event.location || '';
-    const address = event.address || '';
-    const contact = event.phones || '';
+        const cardData = cardPicRes.data?.data?.[0] || null;
+        setCardData(cardData);
 
-    
+        console.log("view-card response:", cardPicRes.data);
 
+      } catch (err) {
+        console.error('Error fetching card:', err?.message || err);
+        if (err?.response) console.error('Response data:', err.response.data);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return (
-        <div>
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
-                <div className="container">
-                    <a className="navbar-brand fw-bold" >Preview card</a>
-                </div>
-            </nav>
+    fetchData();
+  }, [eventID]); // rerun when eventID changes
 
-            <div className="eventcard-wrapper" style={{ marginTop: 100 }}>
-                <div
-                    className="cardii"
-                    style={{
-                        backgroundImage: `url(${Card})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                    }}
-                >
-                    <div className="small-text" >
-                        Familia ya Bw & Bibi
-                        <div className="name" style={{ marginBottom: 80 }}>{hostName}</div>
-                        wanayo furaha kukualika/kuwaalika<br />
-                        {guestName} <br />
-                        kwenye harusi ya vijana wao wapendwa
-                    </div>
+  if (loading) return <p>Loading...</p>;
+  if (!event) return <p>Event not found.</p>;
 
-                    <div className="name italic">{groomName} & {brideName}</div>
-
-                    <div className="details">
-                        itayofanyika<br />
-                        {eventDate} <br />
-                        <div className="small-text">kuanzia SAA 12:00 JIONI </div>
-                        katika ukumbi wa
-                    </div>
-
-                    <div className="venue italic">
-                        {venue} <br />
-                        <span className="city">{address}</span>
-                    </div>
-
-                    <div className="contact-field italic">
-                        Kwa mawasiliano zaidi <br />
-                        <strong>Contact:</strong> {contact}
-                    </div>
+  const hostName = event.host_name || '';
+  const guestName = guest?.guest_name || 'Guest Name';
+  const groomName = event.groom || '';
+  const brideName = event.bride || '';
+  const eventDate = event.event_date || '';
+  const venue = event.location || '';
+  const address = event.address || '';
+  const contact = event.phones || '';
 
 
-                        <div>
-                            <input
-                                type="text"
-                                value={text}
-                                onChange={(e) => setText(e.target.value)}
-                                placeholder="Enter text or URL"
-                              
-                                hidden
-                            />
-                            <QRCode className='bg-light p-1' value={text} size={80} />
-                        </div>
-                        
-                </div>
 
-                <button className='btn btn-primary eventcard-btn'>Next</button>
-            </div>
+  return (
+    <div>
+      <nav
+        className="navbar navbar-expand-lg navbar-dark fixed-top"
+        style={{ background: 'var(--primary-gradient)' }}
+      >
+        <div className="container">
+          <a className="navbar-brand fw-bold">Preview card</a>
         </div>
-    );
+      </nav>
+
+      <div className="eventcard-wrapper" style={{ marginTop: 100 }}>
+        <div
+          className="cardii"
+          style={{
+            backgroundImage: `url(${Card})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <div className="small-text">
+            Familia ya Bw & Bibi
+            <div className="name" style={{ marginBottom: 80 }}>
+              {hostName}
+            </div>
+            wanayo furaha kukualika/kuwaalika
+            <br />
+            {guestName} <br />
+            kwenye harusi ya vijana wao wapendwa
+          </div>
+
+          <div className="name italic">
+            {groomName} & {brideName}
+          </div>
+
+          <div className="details">
+            itayofanyika
+            <br />
+            {eventDate} <br />
+            <div className="small-text">kuanzia SAA 12:00 JIONI </div>
+            katika ukumbi wa
+          </div>
+
+          <div className="venue italic">
+            {venue} <br />
+            <span className="city">{address}</span>
+          </div>
+
+          <div className="contact-field italic">
+            Kwa mawasiliano zaidi <br />
+            <strong>Contact:</strong> {contact}
+          </div>
+
+          <div>
+            <input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Enter text or URL"
+              hidden
+            />
+            <QRCode className="bg-light p-1" value={text} size={80} />
+          </div>
+        </div>
+
+        <button className="btn btn-primary eventcard-btn">Next</button>
+      </div>
+    </div>
+  );
 };
 
 export default PreviewCard;

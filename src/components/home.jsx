@@ -72,8 +72,6 @@ const Home = () => {
 
   return (
     <div>
-
-
       <div
         className="container-fluid flex-column justify-content-center text-center px-0 text-white"
         style={{

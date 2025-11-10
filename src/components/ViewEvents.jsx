@@ -46,7 +46,8 @@ const ViewEvents = () => {
 
     return (
         <div>
-			<nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
+			<nav className="navbar navbar-expand-lg navbar-dark fixed-top"
+             style={{ background: 'var(--primary-gradient)' }}>
 				<div className="container">
 					<a className="navbar-brand fw-bold" >View Events</a>
 				</div>
@@ -92,7 +93,7 @@ const ViewEvents = () => {
                                         <button className="btn btn-outline-success btn-sm mx-1" onClick={() => navigate("/view-guests", { state: { eventID: row.event_id } })}>
                                             <FontAwesomeIcon icon={faEye} /> View Guests
                                         </button>
-                                        <button className="btn btn-outline-primary btn-sm mx-1" onClick={() => navigate("/preview-card", { state: { eventID: row.event_id } })}>
+                                        <button className="btn btn-outline-primary btn-sm mx-1" onClick={() => navigate(`/preview-card/${row.event_id}`)}>
                                             <FontAwesomeIcon icon={faEye} /> preview Card
                                         </button>
                                     </td>

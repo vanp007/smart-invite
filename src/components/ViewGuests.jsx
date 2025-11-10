@@ -49,7 +49,8 @@ const ViewGuests = () => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: "linear-gradient(135deg, #1a237e, #3949ab)" }}>
+            <nav className="navbar navbar-expand-lg navbar-dark fixed-top" 
+            style={{ background: 'var(--primary-gradient)'}}>
                 <div className="container">
                     <a className="navbar-brand fw-bold" >View Guests</a>
                 </div>
