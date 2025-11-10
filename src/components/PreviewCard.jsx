@@ -48,7 +48,7 @@ const PreviewCard = () => {
         const cardData = cardPicRes.data?.data?.[0] || null;
         setCardData(cardData);
 
-        console.log("view-card response:", cardPicRes.data);
+        console.log("view-card response:", cardData.image_path);
 
       } catch (err) {
         console.error('Error fetching card:', err?.message || err);
@@ -73,6 +73,8 @@ const PreviewCard = () => {
   const address = event.address || '';
   const contact = event.phones || '';
 
+  const imageUrl = cardData ? `https://invite.komki.co.tz/smart-invite-api/${cardData.image_path}` : null;
+
 
 
   return (
@@ -90,7 +92,7 @@ const PreviewCard = () => {
         <div
           className="cardii"
           style={{
-            backgroundImage: `url(${Card})`,
+            backgroundImage: `url(${imageUrl || Card})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
