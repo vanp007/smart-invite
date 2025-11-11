@@ -59,7 +59,7 @@ const PreviewCard = () => {
     };
 
     fetchData();
-  }, [eventID]); // rerun when eventID changes
+  }, [eventID]); 
 
   if (loading) return <p>Loading...</p>;
   if (!event) return <p>Event not found.</p>;
@@ -98,9 +98,9 @@ const PreviewCard = () => {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <div className="small-text">
+          <div className="small-text" style={{ marginTop: 50 }}>
             Familia ya Bw & Bibi
-            <div className="name" style={{ marginBottom: 80 }}>
+            <div className="name" >
               {hostName}
             </div>
             wanayo furaha kukualika/kuwaalika
