@@ -52,40 +52,11 @@ const CreateEvent = () => {
 						<label htmlFor="hostName">Host Name:</label>
 						<input type="text" id="hostName" name="hostName" required />
 					</div>
-					<div>
-						<label htmlFor="address">Address:</label>
-						<input type="text" id="address" name="address" required />
-					</div>
-					<div>
-						<label htmlFor="brideName">Bride Name:</label>
-						<input type="text" id="brideName" name="brideName" required />
-					</div>
-					<div>
-						<label htmlFor="groomName">Groom Name:</label>
-						<input type="text" id="groomName" name="groomName" required />
-					</div>
-					<div>
-						<label htmlFor="eventDate">Event date:</label>
-						<input type="date" id="eventDate" name="eventDate" required />
-					</div>
-					<div>
-						<label htmlFor="venue">Venue:</label>
-						<input type="text" id="venue" name="venue" required />
-					</div>
-					<div>
-						<label htmlFor="color1">Color 1:</label>
-						<input type="text" id="color1" name="color1" required />
-					</div>
-					<div>
-						<label htmlFor="color2">Color 2:</label>
-						<input type="text" id="color2" name="color2" required />
-					</div>
-					<div>
-						<label htmlFor="color3">Color 3:</label>
-						<input type="text" id="color3" name="color3" required />
-					</div>
+
 					<label htmlFor="phoneNumbers" className="full-width">Phone Numbers (comma separated):</label>
+
 					<input type="text" id="phoneNumbers" className="full-width" name="phoneNumbers" required />
+					
 					<button type="submit" className='btn btn-primary full-width'>Create Event</button>
 				</form>
 				<p>{result}</p>

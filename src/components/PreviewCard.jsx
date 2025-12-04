@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useParams } from 'react-router-dom';
-import '../Styles/eventcard.css';
 import QRCode from 'react-qr-code';
-import Card from '../assets/wedding1.jpg';
+import Card from '../assets/download.jpg';
 
 const PreviewCard = () => {
   const location = useLocation();
@@ -64,14 +63,6 @@ const PreviewCard = () => {
   if (loading) return <p>Loading...</p>;
   if (!event) return <p>Event not found.</p>;
 
-  const hostName = event.host_name || '';
-  const guestName = guest?.guest_name || 'Guest Name';
-  const groomName = event.groom || '';
-  const brideName = event.bride || '';
-  const eventDate = event.event_date || '';
-  const venue = event.location || '';
-  const address = event.address || '';
-  const contact = event.phones || '';
 
   const imageUrl = cardData ? `https://invite.komki.co.tz/smart-invite-api/${cardData.image_path}` : null;
 
@@ -88,50 +79,25 @@ const PreviewCard = () => {
         </div>
       </nav>
 
-      <div className="eventcard-wrapper" style={{ marginTop: 100 }}>
-        <div
-          className="cardii"
-          style={{
-            backgroundImage: `url(${imageUrl || Card})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-          <div className="small-text" style={{ marginTop: 50 }}>
-            Familia ya Bw & Bibi
-            <div className="name" >
-              {hostName}
-            </div>
-            wanayo furaha kukualika/kuwaalika
-            <br />
-            {guestName} <br />
-            kwenye harusi ya vijana wao wapendwa
-          </div>
+      <div
+        style={{
+          marginTop: 80,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: 'calc(100vh - 120px)',
+          flexDirection: 'column',
+          padding: '16px',
+        }}
+      >
+        <div style={{ position: 'relative', width: '100%', maxWidth: 400, }}>
+          <img
+            src={imageUrl || Card}
+            alt="card preview"
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          />
 
-          <div className="name italic">
-            {groomName} & {brideName}
-          </div>
-
-          <div className="details">
-            itayofanyika
-            <br />
-            {eventDate} <br />
-            <div className="small-text">kuanzia SAA 12:00 JIONI </div>
-            katika ukumbi wa
-          </div>
-
-          <div className="venue italic">
-            {venue} <br />
-            <span className="city">{address}</span>
-          </div>
-
-          <div className="contact-field italic">
-            Kwa mawasiliano zaidi <br />
-            <strong>Contact:</strong> {contact}
-          </div>
-
-          <div>
+          <div style={{ position: 'absolute', left: 20, bottom: 30 }}>
             <input
               type="text"
               value={text}
@@ -143,7 +109,9 @@ const PreviewCard = () => {
           </div>
         </div>
 
-        <button className="btn btn-primary eventcard-btn">Next</button>
+        <button className="btn btn-primary eventcard-btn" style={{ marginTop: 16 }}>
+          Next
+        </button>
       </div>
     </div>
   );

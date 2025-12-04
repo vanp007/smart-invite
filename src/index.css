@@ -33,25 +33,9 @@ form {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  /* Desktop: 3 equal columns */
   gap: 20px;
 }
 
-.full-width {
-  grid-column: 1 / span 3;
-}
-
-/* Tablet (≤1024px): 2 columns */
-@media (max-width: 1024px) {
-  form {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .full-width {
-    grid-column: 1 / span 2;
-  }
-}
 
 /* Phone (≤768px): 1 column */
 @media (max-width: 768px) {
